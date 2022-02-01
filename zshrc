@@ -133,11 +133,11 @@ export PAGER MANPAGER
 # Subconfigs
 #-------------------------------------------------------------------------------
 
-source ~/.zsh/direnv.sh
-source ~/.zsh/go.sh
-source ~/.zsh/qq.sh
-source ~/.zsh/ssh-agent.sh
-source ~/.zsh/thefuck.sh
+source ~/.zsh.d/direnv.sh
+source ~/.zsh.d/go.sh
+source ~/.zsh.d/qq.sh
+source ~/.zsh.d/ssh-agent.sh
+source ~/.zsh.d/thefuck.sh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
