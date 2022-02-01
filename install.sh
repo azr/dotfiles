@@ -9,17 +9,6 @@ pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 SCRIPT_DIR=$(pwd)
 popd > /dev/null
 
-# names in this list won't be dot-prefixed
-skip_dot_prefix=(nvim)
-
-# contains checks if an array ($2) contains a given element ($1).
-contains() {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
-}
-
 # copy or symlink all the dotfiles
 UNAME=$(uname | tr '[:upper:]' '[:lower:]')
 for path in $SCRIPT_DIR/*; do
@@ -34,11 +23,7 @@ for path in $SCRIPT_DIR/*; do
     path="${path}.${UNAME}"
   fi
 
-  # If the file is in the skip dot list, then we don't add a dot
-  target="$name"
-  if ! contains "$name" "${skip_dot_prefix[@]}"; then
-    target=".$name"
-  fi
+  target=".$name"
 
   # Build our complete path to the home directory
   target="$HOME/$target"
@@ -60,12 +45,5 @@ for path in $SCRIPT_DIR/*; do
   esac
 done
 
-# setup the vim directory
-pushd $HOME >/dev/null
-if [ ! -d ".vim/bundle" ]; then
-    echo "Installing Vim plugins"
-    mkdir -p .vim .vim/bundle .vim/backup .vim/swap .vim/cache .vim/undo
-    curl -fLo .vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    TERM=dumb vim +PlugInstall +qall >vim.log 2>&1
-fi
-popd >/dev/null
+# install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
