@@ -1,5 +1,5 @@
 
-command go || return
+(( $+commands[go] )) || echo "go not installed" && return
 
 # Configure our private repositories. By blacklisting personal and work repos.
 export GOPRIVATE="github.com/azr,github.com/hashicorp"
