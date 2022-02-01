@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Mitchell Hashimoto's bash environment
+# Adrien Delorme's bash environment
 # Much taken from Ryan Tomayko (thanks!)
 
 # Basics
