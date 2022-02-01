@@ -1,9 +1,0 @@
-irssi/config
-emacs.d/backups
-emacs.d/auto-save-list
-nvim/backup
-nvim/plugged
-nvim/swap
-nvim/undo
-*.elc
-backup.tar.gz
