@@ -117,7 +117,6 @@ case $UNAME in
         ;;
 esac
 
-
 #-------------------------------------------------------------------------------
 # Editor and Pager
 #-------------------------------------------------------------------------------
@@ -138,6 +137,5 @@ source ~/.zsh.d/go.sh
 source ~/.zsh.d/qq.sh
 source ~/.zsh.d/ssh-agent.sh
 source ~/.zsh.d/thefuck.sh
-
 
 source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
