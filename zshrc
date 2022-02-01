@@ -139,5 +139,5 @@ source ~/.zsh.d/qq.sh
 source ~/.zsh.d/ssh-agent.sh
 source ~/.zsh.d/thefuck.sh
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
