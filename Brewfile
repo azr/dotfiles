@@ -28,6 +28,7 @@ cask "spotify"
 cask "synology-drive"
 cask "tableplus"
 cask "vlc"
+cask "vim"
 cask "zoom"
 mas "Keynote", id: 409183694
 mas "Pixelmator", id: 407963104
