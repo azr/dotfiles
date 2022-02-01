@@ -6,6 +6,7 @@ brew "git-crypt"
 brew "gnupg"
 brew "pure"
 brew "gh"
+brew "gti" # lol
 brew "htop"
 brew "jq"
 brew "ranger"
@@ -43,7 +44,6 @@ cask "tableplus"
 cask "vlc"
 cask "vim"
 cask "zoom"
-cask "gti" # lol
 mas "Keynote", id: 409183694
 mas "Pixelmator", id: 407963104
 mas "The Unarchiver", id: 425424353
