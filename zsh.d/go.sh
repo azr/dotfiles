@@ -1,5 +1,5 @@
 
-(( $+commands[go] )) || echo "go not installed" && return
+#(( $+commands[go] )) || echo "go not installed" && return
 
 # Configure our private repositories. By blacklisting personal and work repos.
 export GOPRIVATE="github.com/azr,github.com/hashicorp"
@@ -9,6 +9,9 @@ export CDPATH=$CDPATH:$(go env GOPATH)/src
 
 # allow doing cd azr/...
 export CDPATH=$CDPATH:$(go env GOPATH)/src/github.com
+
+# allow doing cd in my projects
+export CDPATH=$CDPATH:$(go env GOPATH)/src/github.com/azr
 
 # add go as a binary
 export PATH=$PATH:$(go env GOPATH)/bin
