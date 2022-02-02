@@ -8,7 +8,7 @@ function start_ssh_agent {
         return
     fi
 
-    if [ ! -d "$(dirname $SSH_ENV)" ]; then
+    if [ ! -d $(dirname "$SSH_ENV") ]; then
         mkdir -p $(dirname $SSH_ENV)
         chmod 0700 $(dirname $SSH_ENV)
     fi
