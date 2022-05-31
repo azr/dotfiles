@@ -13,6 +13,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # allow using bash completions
 autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
 #-------------------------------------------------------------------------------
 # Local configs, if any ?
 #-------------------------------------------------------------------------------
