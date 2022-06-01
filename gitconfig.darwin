@@ -57,5 +57,13 @@
 
 [user]
 	name = Adrien Delorme
-	email = azr@users.noreply.github.com 
+	email = azr@users.noreply.github.com
+	signingkey = D820F58249151A81F0E08ADEF0BAA996F6D59D5B 
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
 
