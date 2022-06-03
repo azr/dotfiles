@@ -1,5 +1,4 @@
-# Setup TTY for GPG
-export GPG_TTY=$(tty)
+# should be gpg with no-tty
 
 function start_gpg_agent {
     if [ ! -x "$(command -v gpgconf)" ]; then
