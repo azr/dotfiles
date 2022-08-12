@@ -4,8 +4,10 @@
 SSH_ENV=$HOME/.ssh/environment
 
 function start_ssh_agent {
-    if [ ! -x "$(command -v ssh-agent)" ]; then
-        return
+    if [ which ssh-agent >/dev/null 2>&1 ]; then
+      # all good
+    else
+      return
     fi
 
     if [ ! -d $(dirname "$SSH_ENV") ]; then
