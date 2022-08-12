@@ -143,7 +143,6 @@ export PAGER MANPAGER
 source ~/.zsh.d/direnv.sh
 source ~/.zsh.d/go.sh
 source ~/.zsh.d/qq.sh
-source ~/.zsh.d/gpg-agent.sh
 source ~/.zsh.d/ssh-agent.sh
 source ~/.zsh.d/thefuck.sh
 
