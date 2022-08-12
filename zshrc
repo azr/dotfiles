@@ -1,4 +1,3 @@
-zmodload zsh/zprof
 
 # Basics
 : ${HOME=~}
@@ -147,5 +146,3 @@ source ~/.zsh.d/ssh-agent.sh
 # source ~/.zsh.d/thefuck.sh
 
 source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-zprof
