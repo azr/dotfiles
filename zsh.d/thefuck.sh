@@ -1,4 +1,4 @@
 
 # setup thefuck
-eval "$(thefuck --alias)"
+eval "$(thefuck --alias --enable-experimental-instant-mode)"
 alias f=fuck
