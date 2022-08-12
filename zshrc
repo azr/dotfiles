@@ -60,6 +60,10 @@ esac
 # Oh my zsh
 #-------------------------------------------------------------------------------
 
+# even the 'reminder' mode takes 50% of startup time. So I'll run it
+# every now an then with brew stuff.
+zstyle ':omz:update' mode disabled
+
 export ZSH="/Users/azr/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
