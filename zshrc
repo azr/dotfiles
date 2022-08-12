@@ -11,9 +11,19 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PAT
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# allow using bash completions
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
+#-------------------------------------------------------------------------------
+# Oh my zsh
+#-------------------------------------------------------------------------------
+
+# even the 'reminder' mode takes 50% of startup time.
+zstyle ':omz:update' mode disabled
+
+export ZSH="/Users/azr/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
+plugins=(
+  git
+)
 
 #-------------------------------------------------------------------------------
 # Local configs, if any ?
@@ -57,25 +67,10 @@ case $UNAME in
 esac
 
 #-------------------------------------------------------------------------------
-# Oh my zsh
-#-------------------------------------------------------------------------------
-
-# even the 'reminder' mode takes 50% of startup time. So I'll run it
-# every now an then with brew stuff.
-zstyle ':omz:update' mode disabled
-
-export ZSH="/Users/azr/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
-plugins=(
-  git
-)
-
-#-------------------------------------------------------------------------------
 # Prompt
 #-------------------------------------------------------------------------------
 
-autoload -U promptinit; promptinit # optionally define some options
+autoload -Uz promptinit; promptinit # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
 prompt pure
 
