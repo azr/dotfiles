@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 
 # Basics
 : ${HOME=~}
@@ -143,6 +144,8 @@ source ~/.zsh.d/direnv.sh
 source ~/.zsh.d/go.sh
 source ~/.zsh.d/qq.sh
 source ~/.zsh.d/ssh-agent.sh
-source ~/.zsh.d/thefuck.sh
+# source ~/.zsh.d/thefuck.sh
 
 source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+zprof

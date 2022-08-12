@@ -3,7 +3,7 @@
 #-------------------------------------------------------------------------------
 SSH_ENV=$HOME/.ssh/environment
 
-function start_ssh_agent {
+function _start_ssh_agent {
     if [ which ssh-agent >/dev/null 2>&1 ]; then
       # all good
     else
@@ -21,21 +21,22 @@ function start_ssh_agent {
     ssh-add
 }
 
-# Source SSH agent settings if it is already running, otherwise start
-# up the agent proprely.
-if [ -f "${SSH_ENV}" ]; then
-     . ${SSH_ENV} > /dev/null
-     # ps ${SSH_AGENT_PID} doesn't work under cywgin
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-         start_ssh_agent
-     }
-else
-    case $UNAME in
-      MINGW*)
-        ;;
-      *)
-        start_ssh_agent
-        ;;
-    esac
-fi
-
+function start_ssh_agent {
+  # Source SSH agent settings if it is already running, otherwise start
+  # up the agent proprely.
+  if [ -f "${SSH_ENV}" ]; then
+      . ${SSH_ENV} > /dev/null
+      # ps ${SSH_AGENT_PID} doesn't work under cywgin
+      ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+          start_ssh_agent
+      }
+  else
+      case $UNAME in
+        MINGW*)
+          ;;
+        *)
+          start_ssh_agent
+          ;;
+      esac
+  fi
+}
