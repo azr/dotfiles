@@ -8,6 +8,7 @@ packer_cache
 *.vmx
 *.vmxf
 .envrc
+.DS_Store
 
 *.pvi
 *.pvs
