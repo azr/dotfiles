@@ -47,7 +47,6 @@ cask "tableplus"
 cask "vlc"
 cask "vim"
 cask "zoom"
-cask "parallels"
 cask "visual-studio-code"
 mas "Keynote", id: 409183694
 mas "Pixelmator", id: 407963104
