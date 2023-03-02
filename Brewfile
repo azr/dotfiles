@@ -48,7 +48,6 @@ cask "vlc"
 cask "vim"
 cask "zoom"
 cask "visual-studio-code"
-mas "Keynote", id: 409183694
 mas "Pixelmator", id: 407963104
 mas "The Unarchiver", id: 425424353
 mas "Xcode", id: 497799835
