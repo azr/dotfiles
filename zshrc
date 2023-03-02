@@ -18,7 +18,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # even the 'reminder' mode takes 50% of startup time.
 zstyle ':omz:update' mode disabled
 
-export ZSH="/Users/azr/.oh-my-zsh"
+export ZSH="/Users/$USER/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 plugins=(
