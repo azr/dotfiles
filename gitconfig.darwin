@@ -58,7 +58,13 @@
 [user]
 	name = Adrien Delorme
 	email = azr@users.noreply.github.com
-	signingkey = D820F58249151A81F0E08ADEF0BAA996F6D59D5B 
+  	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDCZuP2iTQ7QbZo7otrnmeh9ZSnaceDOoF8tNa8+hOvv
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [commit]
   gpgsign = true
