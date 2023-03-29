@@ -38,6 +38,7 @@ alias rnd="cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c 10"
 #-------------------------------------------------------------------------------
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
+test -r ~/.config/op/plugins.sh && source ~/.config/op/plugins.sh
 
 #-------------------------------------------------------------------------------
 # Check if there's a local path folder 
