@@ -52,8 +52,6 @@
 
 [url "git@gitlab.com/azr"]
 	insteadOf = https://gitlab.com/
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 
 [user]
 	name = Adrien Delorme
