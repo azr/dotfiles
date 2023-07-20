@@ -1,5 +1,7 @@
 
-#(( $+commands[go] )) || echo "go not installed" && return
+test -r /usr/local/go/bin && export PATH=$PATH:/usr/local/go/bin
+
+(( $+commands[go] )) || echo "go not installed" && return
 
 # Configure our private repositories. By blacklisting personal and work repos.
 export GOPRIVATE=${GOPRIVATE},github.com/azr

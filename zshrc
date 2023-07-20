@@ -18,7 +18,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # even the 'reminder' mode takes 50% of startup time.
 zstyle ':omz:update' mode disabled
 
-export ZSH="/Users/$USER/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 plugins=(
@@ -44,7 +44,8 @@ test -r ~/.config/op/plugins.sh && source ~/.config/op/plugins.sh
 # Check if there's a local path folder 
 #-------------------------------------------------------------------------------
 
-test -r ~/path && export PATH="$PATH:/Users/$USER/path"
+test -r ~/path && export PATH="$PATH:$HOME/path"
+test -r ~/bin && export PATH="$PATH:$HOME/path"
 
 #-------------------------------------------------------------------------------
 # Shell Options
@@ -76,9 +77,12 @@ esac
 # Prompt
 #-------------------------------------------------------------------------------
 
-autoload -Uz promptinit; promptinit # optionally define some options
-PURE_CMD_MAX_EXEC_TIME=10
-prompt pure
+test -r $HOME/.zsh/pure \
+	&& fpath+=($HOME/.zsh/pure) \
+	&& autoload -Uz promptinit \
+	&& promptinit \
+	&& PURE_CMD_MAX_EXEC_TIME=10 \
+        && prompt pure
 
 #-------------------------------------------------------------------------------
 # Env. Configuration
@@ -151,4 +155,6 @@ source ~/.zsh.d/qq.sh
 source ~/.zsh.d/ssh-agent.sh
 # source ~/.zsh.d/thefuck.sh
 
-source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+(( $+commands[brew] )) && source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+test -d "$HOME/.tea" && source <("$HOME/.tea/tea.xyz/v*/bin/tea" --magic=zsh --silent)

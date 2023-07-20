@@ -13,9 +13,9 @@
   ui = true
 
 [core]
-	excludesfile = /Users/azr/.gitignore
+	excludesfile = $HOME/.gitignore
 	autocrlf = input
-	attributesfile = /Users/azr/.gitattributes
+	attributesfile = $HOME/.gitattributes
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
@@ -39,13 +39,13 @@
 	defaultBranch = main
 
 [http]
-	cookiefile = /Users/azr/.gitcookies
+	cookiefile = $HOME/gitcookies
 
 [push]
 	default = tracking
 
 [submodule]
-	recurse = true
+	recurse = false 
 
 [url "git@gitlab.com/azr"]
 	insteadOf = https://gitlab.com/
@@ -55,7 +55,13 @@
 [user]
 	name = Adrien Delorme
 	email = azr@users.noreply.github.com
-	signingkey = D820F58249151A81F0E08ADEF0BAA996F6D59D5B 
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDCZuP2iTQ7QbZo7otrnmeh9ZSnaceDOoF8tNa8+hOvv 
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
 
 [commit]
   gpgsign = true
