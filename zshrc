@@ -78,10 +78,12 @@ esac
 #-------------------------------------------------------------------------------
 
 test -r $HOME/.zsh/pure \
-	&& fpath+=($HOME/.zsh/pure) \
-	&& autoload -Uz promptinit \
-	&& promptinit \
-	&& PURE_CMD_MAX_EXEC_TIME=10 \
+	&& fpath+=($HOME/.zsh/pure)
+
+autoload -Uz promptinit \
+	&& promptinit
+
+PURE_CMD_MAX_EXEC_TIME=10 \
         && prompt pure
 
 #-------------------------------------------------------------------------------
