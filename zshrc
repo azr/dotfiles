@@ -28,6 +28,7 @@ plugins=(
 )
 
 which fzf > /dev/null && eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 
 #-------------------------------------------------------------------------------
 # Aliases
