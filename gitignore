@@ -1,4 +1,5 @@
 .vscode
+.idea
 packer_cache
 *.vmdk
 *.nvram
