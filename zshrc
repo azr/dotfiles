@@ -153,6 +153,7 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 
 HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+HIST_STAMPS="yyyy-mm-dd"     # eg: 10206  2024-03-30 12:29  echo yo
 setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY         # Share history between all sessions.
