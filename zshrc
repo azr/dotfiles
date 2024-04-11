@@ -31,7 +31,9 @@ plugins=(
 # Aliases
 #-------------------------------------------------------------------------------
 
-alias k="clear;l"
+alias ll="ls -lah"
+alias l="clear;ll"
+alias k="kubectl"
 alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`"
 alias rnd="cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c 10"
 
