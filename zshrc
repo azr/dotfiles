@@ -118,6 +118,54 @@ export LANG LANGUAGE LC_CTYPE LC_ALL
 export FTP_PASSIVE
 
 #-------------------------------------------------------------------------------
+# Editor and Pager
+#-------------------------------------------------------------------------------
+
+EDITOR="vim"
+export EDITOR
+
+PAGER="less -FirSwX"
+MANPAGER="$PAGER"
+export PAGER MANPAGER
+
+#-------------------------------------------------------------------------------
+# Subconfigs
+#-------------------------------------------------------------------------------
+
+source ~/.zsh.d/direnv.sh
+source ~/.zsh.d/go.sh
+source ~/.zsh.d/qq.sh
+source ~/.zsh.d/ssh-agent.sh
+# source ~/.zsh.d/thefuck.sh
+
+complete -C '/usr/local/bin/aws_completer' aws
+
+(( $+commands[brew] )) && source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+test -d "$HOME/.tea" && source <("$HOME/.tea/tea.xyz/v*/bin/tea" --magic=zsh --silent)
+
+#-------------------------------------------------------------------------------
+# History
+#-------------------------------------------------------------------------------
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY         # Share history between all sessions.
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+
+#-------------------------------------------------------------------------------
 # User Shell Environment
 #-------------------------------------------------------------------------------
 
@@ -139,28 +187,3 @@ case $UNAME in
         MANPATH=$(puniq $MANPATH)
         ;;
 esac
-
-#-------------------------------------------------------------------------------
-# Editor and Pager
-#-------------------------------------------------------------------------------
-
-EDITOR="vim"
-export EDITOR
-
-PAGER="less -FirSwX"
-MANPAGER="$PAGER"
-export PAGER MANPAGER
-
-#-------------------------------------------------------------------------------
-# Subconfigs
-#-------------------------------------------------------------------------------
-
-source ~/.zsh.d/direnv.sh
-source ~/.zsh.d/go.sh
-source ~/.zsh.d/qq.sh
-source ~/.zsh.d/ssh-agent.sh
-# source ~/.zsh.d/thefuck.sh
-
-(( $+commands[brew] )) && source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-test -d "$HOME/.tea" && source <("$HOME/.tea/tea.xyz/v*/bin/tea" --magic=zsh --silent)
