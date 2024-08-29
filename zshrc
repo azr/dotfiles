@@ -27,9 +27,6 @@ plugins=(
   git
 )
 
-which fzf > /dev/null && eval "$(fzf --zsh)"
-export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
-
 #-------------------------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------------------------
@@ -37,6 +34,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 alias ll="ls -lah"
 alias l="clear;ll"
 alias k="kubectl"
+alias tf="terraform"
 alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`"
 alias rnd="cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c 10"
 
@@ -168,6 +166,17 @@ setopt HIST_VERIFY           # Do not execute immediately upon history expansion
 setopt APPEND_HISTORY        # append to history file (Default)
 setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+
+which fzf > /dev/null && eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+
+function del_word_history () {
+  if [ -z "${1}" ]; then return false; fi
+  mapfile -t result <<< "$(history | grep "${1}" | tac | awk '{print $1}')"
+  for idx in "${result[@]}"; do
+    history -d $idx
+  done
+}
 
 #-------------------------------------------------------------------------------
 # User Shell Environment
