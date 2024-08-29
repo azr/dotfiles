@@ -21,3 +21,5 @@ packer_cache
 .ssh_*
 
 .envrc.*
+*GiB
+*MiB
