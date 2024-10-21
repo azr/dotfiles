@@ -1,19 +1,21 @@
+# Ensure Go is installed and set up the PATH
+if ! (( $+commands[go] )); then
+    echo "go not installed"
+    return
+fi
 
+# Add Go binary paths
 test -r /usr/local/go/bin && export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
-(( $+commands[go] )) || echo "go not installed" && return
-
-# Configure our private repositories. By blacklisting personal and work repos.
+# Configure our private repositories by blacklisting personal and work repos
 export GOPRIVATE=${GOPRIVATE},github.com/azr
 
-# allow doing cd gitlab.com/...
+# Allow doing cd gitlab.com/...
 export CDPATH=$CDPATH:$(go env GOPATH)/src
 
-# allow doing cd azr/...
+# Allow doing cd azr/...
 export CDPATH=$CDPATH:$(go env GOPATH)/src/github.com
 
-# allow doing cd in my projects
+# Allow doing cd in my projects
 export CDPATH=$CDPATH:$(go env GOPATH)/src/github.com/azr
-
-# add go as a binary
-export PATH=$PATH:$(go env GOPATH)/bin
