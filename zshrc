@@ -50,7 +50,8 @@ test -r ~/.config/op/plugins.sh && source ~/.config/op/plugins.sh
 #-------------------------------------------------------------------------------
 
 test -r ~/path && export PATH="$PATH:$HOME/path"
-test -r ~/bin && export PATH="$PATH:$HOME/path"
+test -r ~/bin && export PATH="$PATH:$HOME/bin"
+test -r ~/.local/bin && export PATH="$PATH:$HOME/.local/bin"
 
 #-------------------------------------------------------------------------------
 # Shell Options
@@ -88,8 +89,31 @@ test -r $HOME/.zsh/pure \
 autoload -Uz promptinit \
 	&& promptinit
 
+tf_workspace_prompt() {
+  if [ -f .terraform/environment ]; then
+    local ws=$(<.terraform/environment)
+    echo "%F{blue}󱁢 $ws%f"   # or use another icon/text
+  fi
+}
+
+
 PURE_CMD_MAX_EXEC_TIME=10 \
         && prompt pure
+
+get_tf_state() {
+    if [[ -f .terraform/environment ]]; then
+        local workspace=$(cat .terraform/environment 2>/dev/null)
+        if [[ -n "$workspace" ]]; then
+            echo "[ $workspace] "
+        fi
+    fi
+}
+
+# Show selected tf state in prompt
+PROMPT='$(get_tf_state)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+
+#eval "$(starship init zsh)"
+
 
 #-------------------------------------------------------------------------------
 # Env. Configuration
@@ -143,32 +167,69 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 (( $+commands[brew] )) && source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-test -d "$HOME/.tea" && source <("$HOME/.tea/tea.xyz/v*/bin/tea" --magic=zsh --silent)
+
+
+#-------------------------------------------------------------------------------
+# Date FNs
+#-------------------------------------------------------------------------------
+
+date_iso_8601_utc() {
+  local input="${1:-now}"
+  local os=$(uname)
+  local date_str
+
+  if [[ "$os" == "Darwin" ]]; then
+    # macOS date
+    case "$input" in
+      now)
+        date_str=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        ;;
+      *"day ago"*)
+        local n=${input%% *} # number of days
+        date_str=$(date -u -v -"${n}"d +"%Y-%m-%dT%H:%M:%SZ")
+        ;;
+      *"days ago"*)
+        local n=${input%% *}
+        date_str=$(date -u -v -"${n}"d +"%Y-%m-%dT%H:%M:%SZ")
+        ;;
+      *)
+        echo "Unsupported input format on macOS"
+        return 1
+        ;;
+    esac
+  else
+    # Assume GNU date (Linux)
+    date_str=$(date -u -d "$input" +"%Y-%m-%dT%H:%M:%SZ")
+  fi
+
+  echo "$date_str"
+}
 
 #-------------------------------------------------------------------------------
 # History
 #-------------------------------------------------------------------------------
 
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000000
-SAVEHIST=10000000
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000000
+export SAVEHIST=$HISTSIZE
 
-HISTORY_IGNORE="(ls|cd|pwd|exit)*"
-HIST_STAMPS="yyyy-mm-dd"     # eg: 10206  2024-03-30 12:29  echo yo
-setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
-setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY         # Share history between all sessions.
-setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
-setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
-setopt APPEND_HISTORY        # append to history file (Default)
-setopt HIST_NO_STORE         # Don't store history commands
-setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+export HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+export HIST_STAMPS="yyyy-mm-dd"      # eg: 10206  2024-03-30 12:29  echo yo
+setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY          # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS       # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS   # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY            # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY         # append to history file (Default)
+setopt HIST_NO_STORE          # Don't store history commands
+setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks from each command line being added to the history.
 
 which fzf > /dev/null && eval "$(fzf --zsh)"
-export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+#export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 
 function del_word_history () {
   if [ -z "${1}" ]; then return false; fi
@@ -200,3 +261,5 @@ case $UNAME in
         MANPATH=$(puniq $MANPATH)
         ;;
 esac
+eval "$(atuin init zsh)"
+

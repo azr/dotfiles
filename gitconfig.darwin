@@ -51,7 +51,7 @@
 	recurse = true
 
 [url "git@gitlab.com/azr"]
-	insteadOf = https://gitlab.com/
+	insteadOf = https://gitlab.com/azr
 
 [user]
 	name = Adrien Delorme
