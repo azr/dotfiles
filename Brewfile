@@ -41,5 +41,6 @@ cask "spotify"
 cask "vlc"
 cask "zoom"
 cask "visual-studio-code"
+mas "Amphetamine", id: 937984704
 mas "The Unarchiver", id: 425424353
 mas "Xcode", id: 497799835
